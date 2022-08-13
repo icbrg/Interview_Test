@@ -1,0 +1,18 @@
+body{
+    font-family: 'Prompt', sans-serif !important;    
+    background-color: #EEF0F8 !important;
+}
+.main-container{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+}
+.card-title{
+    margin-bottom: 3rem !important;
+}
+.display-flex{
+    display: flex;
+}
+.justify-flex{
+    justify-content: center;
+}
