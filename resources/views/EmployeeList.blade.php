@@ -33,7 +33,7 @@
                             <h5>รายชื่อพนักงาน</h5>
                         </div>
                         <div class="col-6">
-                            <a href="{{route('register_employee')}}"> 
+                            <a href="{{route('register_employee')}}">
                                 <button type="button" class="btn btn-primary float-right">เพิ่มพนักงาน</button>
                             </a>
                         </div>
@@ -49,16 +49,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (isset($employee))
+                            @foreach ($employee as $key => $value)
                             <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td scope="row">{{$value['id']}}</td>
+                                <td>{{$value['prename']}} {{$value['firstname']}} {{$value['surname']}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary btn-sm">แก้ไข</button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm">ลบ</button>
+                                    @foreach ($value['all_phonenumber'] as $tel_no)
+                                    <p>{{$tel_no}}</p>
+                                    @endforeach
+                                </td>
+                                <td>{{$value['new_starttime']}}-{{$value['new_endtime']}}</td>
+                                <td>
+                                    <a href="{{url('edit'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-primary btn-sm">แก้ไข</button></a>
+                                    <a href="{{url('delete'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-danger btn-sm">ลบ</button></a>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
