@@ -29,46 +29,48 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row card-title">
-                        <div class="col-6">
+                        <div class="col-md-6 col-12 list-header">
                             <h5>รายชื่อพนักงาน</h5>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-md-6 list-btn">
                             <a href="{{route('register_employee')}}">
                                 <button type="button" class="btn btn-primary float-right">เพิ่มพนักงาน</button>
                             </a>
                         </div>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ลำดับ</th>
-                                <th scope="col">ชื่อ-นามสกุล</th>
-                                <th scope="col">เบอร์โทรศัพท์</th>
-                                <th scope="col">เวลาทำการ</th>
-                                <th scope="col">การจัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($employee))
-                            @foreach ($employee as $key => $value)
-                            <tr>
-                                <td scope="row">{{$value['id']}}</td>
-                                <td>{{$value['prename']}} {{$value['firstname']}} {{$value['surname']}}</td>
-                                <td>
-                                    @foreach ($value['all_phonenumber'] as $tel_no)
-                                    <p>{{$tel_no}}</p>
-                                    @endforeach
-                                </td>
-                                <td>{{$value['new_starttime']}}-{{$value['new_endtime']}}</td>
-                                <td>
-                                    <a href="{{url('edit'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-primary btn-sm">แก้ไข</button></a>
-                                    <a href="{{url('delete'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-danger btn-sm">ลบ</button></a>
-                                </td>
-                            </tr>
-                            @endforeach
-                            @endif
-                        </tbody>
-                    </table>
+                    <div class="table-scroller">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ลำดับ</th>
+                                    <th scope="col">ชื่อ-นามสกุล</th>
+                                    <th scope="col">เบอร์โทรศัพท์</th>
+                                    <th scope="col">เวลาทำการ</th>
+                                    <th scope="col">การจัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($employee))
+                                @foreach ($employee as $key => $value)
+                                <tr>
+                                    <td scope="row">{{$value['id']}}</td>
+                                    <td>{{$value['prename']}} {{$value['firstname']}} {{$value['surname']}}</td>
+                                    <td>
+                                        @foreach ($value['all_phonenumber'] as $tel_no)
+                                        <p>{{$tel_no}}</p>
+                                        @endforeach
+                                    </td>
+                                    <td>{{$value['new_starttime']}}-{{$value['new_endtime']}}</td>
+                                    <td>
+                                        <a href="{{url('edit'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-primary btn-sm">แก้ไข</button></a>
+                                        <a href="{{url('delete'.'/'.$value['id'])}}"><button type="button" class="btn btn-outline-danger btn-sm">ลบ</button></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

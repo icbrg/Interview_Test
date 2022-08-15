@@ -1,7 +1,7 @@
 body{
     font-family: 'Prompt', sans-serif !important;    
-    /* background-color: #EEF0F8 !important; */
-    background-color: #fff !important;
+    background-color: #EEF0F8 !important;
+    /* background-color: #fff !important; */
     margin: 0;
 }
 
@@ -93,12 +93,50 @@ body{
 .stepper-box::after
 {
     content: "";
+    position: absolute  ;
     border-bottom: 2px solid #21409a;
     width: 100%;
+    z-index: 2;
 
 }
 
 .hightlight-box{
     border: 4px solid #21409a;
     border-radius: 16px;
+}
+
+.table-scroller{
+    overflow-x: auto;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+@media only screen and (max-width: 425px) {
+
+    td:nth-child(2){
+        min-width: 200px;
+    }
+    td:nth-child(3){
+        min-width: 150px;
+    }
+    td:nth-child(4){
+        min-width: 150px;
+    }
+    td:nth-child(5){
+        min-width: 150px;
+    }
+
+    .list-header
+    {
+        text-align: center;
+    }
+    .list-btn
+    {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        justify-content: center;
+        display: flex;
+    }
 }

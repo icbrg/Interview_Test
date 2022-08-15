@@ -17,6 +17,7 @@ class AdminController extends Controller
 
 
 
+
         foreach ($employee_data as $key => $value) {
             //Delete Seconds digit in start_worktime
             $starttime = $value['start_worktime'];
@@ -28,8 +29,12 @@ class AdminController extends Controller
             $new_endtime = strtotime($endtime);
             $new_endtime = date("G:i", $new_endtime);
 
-
             $employee_data[$key]['all_phonenumber'] = json_decode($value['telephone_number']);
+            foreach ($employee_data[$key]['all_phonenumber'] as $key2 => $value) {
+                
+                $employee_data[$key]['all_phonenumber'][$key2] = substr($value,0,3)."-".substr($value,3,3)."-".substr($value,6,4);
+            }
+
             $employee_data[$key]['new_starttime'] = $new_starttime;
             $employee_data[$key]['new_endtime'] = $new_endtime;
         }

@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div class="container-fluid bg-white" style="padding-left: 0px; padding-right:0px;">
+    <div class="container-fluid bg-white px-0">
         <div class="main-banner">
             <img class="banner-img" src="/images/home-banner.jpg">
         </div>
