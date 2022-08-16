@@ -152,7 +152,7 @@ body{
     z-index: 4;
 }
 
-.sub-header
+.sub-header,.contact-detail
 {
     font-size: 1.1rem;
 }
@@ -182,9 +182,15 @@ body{
         display: flex !important;
     }
 
-    .sub-header
+    .sub-header,.contact-detail
     {
         line-height: 1.75;
+    }
+
+    .contact-detail
+    {
+        font-size: 1rem !important;
+        padding-right: 5% !important;
     }
 
     .mobile-stepper-box::after
@@ -279,9 +285,14 @@ body{
         justify-content: center;
         display: flex;
     }
-    .sub-header
+    .sub-header,.contact-detail
     {
         line-height: 1.5;
+    }
+    .contact-detail
+    {
+        font-size: 1rem !important;
+        padding-right: 5% !important;
     }
     .mobile-stepper-box::after
     {
@@ -342,10 +353,16 @@ body{
         justify-content: center;
         display: flex;
     }
-    .sub-header
+    .sub-header,.contact-detail
     {
         line-height: 1.5;
     }
+    .contact-detail
+    {
+        font-size: 0.75rem !important;
+        padding-right: 5% !important;
+    }
+
     .mobile-stepper-box::before
     {
         content: "";
@@ -405,9 +422,14 @@ body{
         justify-content: center;
         display: flex;
     }
-    .sub-header
+    .sub-header,.contact-detail
     {
         line-height: 1.5;
+    }
+    .contact-detail
+    {
+        font-size: 0.75rem !important;
+        padding-right: 5% !important;
     }
     .mobile-stepper-box::before
     {

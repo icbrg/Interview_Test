@@ -176,17 +176,17 @@
                         <ul>
                             @if(!isset($employee_data))
                             <li>
-                                <h5 class="sub-header">Corporate Service Center โทร 0 2031 7888 (เปิดให้บริการ 8.30 – 20.30 น.)</h5>
+                                <h5 class="contact-detail">Corporate Service Center โทร 0 2031 7888 (เปิดให้บริการ 8.30 – 20.30 น.)</h5>
                             </li>
                             @endif
                             @if (isset($employee_data))
                                 @foreach ($employee_data as $key => $value)
                                 <li>
-                                    <h5 class="sub-header">คุณ{{$value['firstname']}} {{$value['surname']}} โทร. {{$value['all_phonenumber']}}</h5>
+                                    <h5 class="contact-detail">คุณ{{$value['firstname']}} {{$value['surname']}} โทร. {{$value['all_phonenumber']}} (เวลาให้บริการ {{$value['new_starttime']}} - {{$value['new_endtime']}} น.)</h5>
                                 </li>
                                 @endforeach
                                 <li>
-                                    <h5 class="sub-header">Corporate Service Center โทร 0 2031 7888 (เปิดให้บริการ 8.30 – 20.30 น.)</h5>
+                                    <h5 class="contact-detail">Corporate Service Center โทร 0 2031 7888 (เปิดให้บริการ 8.30 – 20.30 น.)</h5>
                                 </li>
                             @endif
                         </ul>
