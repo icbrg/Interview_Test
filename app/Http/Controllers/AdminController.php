@@ -31,14 +31,17 @@ class AdminController extends Controller
 
             $employee_data[$key]['all_phonenumber'] = json_decode($value['telephone_number']);
             foreach ($employee_data[$key]['all_phonenumber'] as $key2 => $value) {
-                
-                $employee_data[$key]['all_phonenumber'][$key2] = substr($value,0,3)."-".substr($value,3,3)."-".substr($value,6,4);
+                if (strlen($value) == 10) {
+                    $employee_data[$key]['all_phonenumber'][$key2] = substr($value,0,3)." ".substr($value,3,3)." ".substr($value,6,4);
+                }
+                elseif (strlen($value) == 9) {
+                    $employee_data[$key]['all_phonenumber'][$key2] = substr($value,0,1)." ".substr($value,1,4)." ".substr($value,5,4);
+                }
             }
 
             $employee_data[$key]['new_starttime'] = $new_starttime;
             $employee_data[$key]['new_endtime'] = $new_endtime;
         }
-
 
         return view('employeelist')
             ->with('employee', $employee_data);
@@ -55,6 +58,13 @@ class AdminController extends Controller
         $employeemodel = new EmployeeModel;
         $data = $employeemodel->getEmployeefromID($request->input('employee_id'));
         $employee_tel = json_encode($request->input('employee-tel'));
+
+        $validated = $request->validate([
+            'employee-name' => 'required',
+            'employee-surname' => 'required',
+            'employee-starttime' => 'required',
+            'employee-endtime' => 'required',
+        ]);
 
         if(isset($data))
         {

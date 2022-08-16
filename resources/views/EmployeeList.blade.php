@@ -26,7 +26,7 @@
 <body>
     <div class="main-container">
         <div class="container">
-            <div class="card">
+            <div class="card rounded">
                 <div class="card-body">
                     <div class="row card-title">
                         <div class="col-md-6 col-12 list-header">

@@ -39,7 +39,7 @@
 <body>
     <div class="main-container">
         <div class="container">
-            <div class="card">
+            <div class="card rounded">
                 <form action="{{ route('add_employee') }}" method="POST">
                     @csrf
                     <div class="card-body">
@@ -52,73 +52,90 @@
                                     <option value="<?= (isset($employee_data['prename']) && $employee_data['prename'] == $value) ? $employee_data['prename'] : $value ?>"><?= (isset($employee_data['prename']) && $employee_data['prename'] == $value) ? $employee_data['prename'] : $value ?></option>
                                     @endforeach
                                 </select>
+                                @error('employee-prename')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-sm-12 col-md-5 mb-3">
                                 <label>ชื่อ</label>
                                 <input type="text" class="form-control" name="employee-name" value="<?= (isset($employee_data['firstname']) ? $employee_data['firstname'] : "") ?>">
+                                @error('employee-name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-sm-12 col-md-5 mb-3">
                                 <label>นามสกุล</label>
                                 <input type="text" class="form-control" name="employee-surname" value="<?= (isset($employee_data['surname']) ? $employee_data['surname'] : "") ?>">
+                                @error('employee-surname')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <label>เบอร์โทรศัพท์</label>
-                        @if (!isset($telephone_data) || count($telephone_data) < 1) 
-                        <div id="tel_no_box" class="form-row mb-3">
+                        @if (!isset($telephone_data) || count($telephone_data) < 1) <div id="tel_no_box" class="form-row mb-3">
                             <div class="col-sm-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" name="employee-tel[]" value="<?= (isset($telephone_data) ? $telephone_data[0] : "") ?>">
+                                <input type="text" class="form-control" name="employee-tel[]" maxlength="10" value="<?= (isset($telephone_data) ? $telephone_data[0] : "") ?>">
+                                @error('employee-tel[]')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-sm-12 col-md-6 mb-3 display-flex">
                             </div>
+                    </div>
+                    @else
+                    @foreach($telephone_data as $key => $data)
+                    <div id="tel_no_box" class="form-row mb-3">
+                        <div class="col-sm-12 col-md-6 mb-3">
+                            <input type="text" class="form-control" name="employee-tel[]" maxlength="10" value="<?= (isset($data) ? $data : "") ?>">
                         </div>
-                        @else
-                        @foreach($telephone_data as $key => $data)
-                        <div id="tel_no_box" class="form-row mb-3">
-                            <div class="col-sm-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" name="employee-tel[]" value="<?= (isset($data) ? $data : "") ?>" maxlength="10">
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-3 display-flex">
-                                @if($key != 0)
-                                <button type="button" class="btn btn-danger delTel">ลบ</button>
-                                @endif
-                            </div>
+                        <div class="col-sm-12 col-md-6 mb-3 display-flex">
+                            @if($key != 0)
+                            <button type="button" class="btn btn-danger delTel">ลบ</button>
+                            @endif
                         </div>
-                        @endforeach
-                        @endif
-                        <div class="form-row mb-3">
-                            <div class="col-12 mb-3 text-center justify-center">
-                                <button type="button" id="addTel" class="btn btn-primary">เพิ่มเบอร์โทรศัพท์</button>
-                                <input hidden name="employee_id" type="text" value="<?= (isset($employee_data['id']) ? $employee_data['id'] : "") ?>"></input>
-                            </div>
+                    </div>
+                    @endforeach
+                    @endif
+                    <div class="form-row mb-3">
+                        <div class="col-12 mb-3 text-center justify-center">
+                            <button type="button" id="addTel" class="btn btn-primary">เพิ่มเบอร์โทรศัพท์</button>
+                            <input hidden name="employee_id" type="text" value="<?= (isset($employee_data['id']) ? $employee_data['id'] : "") ?>"></input>
                         </div>
-                        <div class="form-row mb-3">
-                            <div class="col-sm-12 col-md-6">
-                                <label>เวลาเริ่มงาน</label>
-                                <div class="input-group date mb-3" id="starttimePicker">
-                                    <input type="text" class="form-control timePicker" name="employee-starttime" value="<?= (isset($employee_data['start_worktime']) ? $employee_data['start_worktime'] : "") ?>">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label>เวลาเลิกงาน</label>
-                                <div class="input-group date mb-3" id="endtimePicker">
-                                    <input type="text" class="form-control timePicker" name="employee-endtime" value="<?= (isset($employee_data['end_worktime']) ? $employee_data['end_worktime'] : "") ?>">
-                                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                                </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-sm-12 col-md-6">
+                            <label>เวลาเริ่มงาน</label>
+                            <div class="input-group date mb-3" id="starttimePicker">
+                                <input type="text" class="form-control timePicker" name="employee-starttime" value="<?= (isset($employee_data['start_worktime']) ? $employee_data['start_worktime'] : "") ?>">
+                                @error('employee-starttime')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                                <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="row text-center">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary">ยืนยัน</button>
-                                <a href="{{route('employeelist')}}">
-                                    <button type="button" class="btn btn-danger">ย้อนกลับ</button>
-                                </a>
+                        <div class="col-sm-12 col-md-6">
+                            <label>เวลาเลิกงาน</label>
+                            <div class="input-group date mb-3" id="endtimePicker">
+                                <input type="text" class="form-control timePicker" name="employee-endtime" value="<?= (isset($employee_data['end_worktime']) ? $employee_data['end_worktime'] : "") ?>">
+                                @error('employee-endtime')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                                <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
                             </div>
                         </div>
                     </div>
-                </form>
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                            <a href="{{route('employeelist')}}">
+                                <button type="button" class="btn btn-danger">ย้อนกลับ</button>
+                            </a>
+                        </div>
+                    </div>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 </body>
 
@@ -136,7 +153,7 @@
         const telnumber_input =
             `
         <div class="col-sm-12 col-md-6 mb-3">
-            <input type="text" class="form-control" name="employee-tel[]">
+            <input type="text" class="form-control" maxlength="10" name="employee-tel[]">
         </div>
         <div class="col-sm-12 col-md-6 mb-3 display-flex">
             <button type="button" class="btn btn-danger delTel">ลบ</button>
