@@ -44,6 +44,7 @@ class AdminController extends Controller
         }
 
         return view('employeelist')
+            ->with('list',1)
             ->with('employee', $employee_data);
     }
 

@@ -54,7 +54,7 @@
                                 @if (isset($employee))
                                 @foreach ($employee as $key => $value)
                                 <tr>
-                                    <td scope="row">{{$value['id']}}</td>
+                                    <td scope="row">{{$list++}}</td>
                                     <td>{{$value['prename']}} {{$value['firstname']}} {{$value['surname']}}</td>
                                     <td>
                                         @foreach ($value['all_phonenumber'] as $tel_no)
